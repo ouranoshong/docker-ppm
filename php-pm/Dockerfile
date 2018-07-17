@@ -21,6 +21,8 @@ ADD etc/php.ini /etc/php7/php.ini
 
 RUN apk --no-cache add bash
 
+RUN apk --no-cache add composer
+
 EXPOSE 8000
 
 WORKDIR /var/www
