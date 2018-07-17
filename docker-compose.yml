@@ -1,0 +1,27 @@
+version: '3'
+services:    
+    php-pm:
+        build:
+            context: ./php-pm
+            args:
+            - PHP_VERSION=${PHP_VERSION}
+            - INSTALL_XDEBUG=${PPM_INSTALL_XDEBUG}
+            - INSTALL_MONGO=${PPM_INSTALL_MONGO}
+            - COMPOSER_GLOBAL_INSTALL=${PPM_COMPOSER_GLOBAL_INSTALL}
+            - COMPOSER_REPO_PACKAGIST=${PPM_COMPOSER_REPO_PACKAGIST}
+            - INSTALL_PPM_SSH=${PPM_INSTALL_PPM_SSH}
+            - INSTALL_LINUXBREW=${PPM_INSTALL_LINUXBREW}
+            - INSTALL_IMAGEMAGICK=${PPM_INSTALL_IMAGEMAGICK}
+            - PUID=${PPM_PUID}
+            - PGID=${PPM_PGID}
+            - TZ=${PPM_TIMEZONE}
+        volumes:
+            - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        networks:
+            - backend
+        ports:
+            - '8000:8000'
+            
+networks:
+    backend:
+        driver: bridge
